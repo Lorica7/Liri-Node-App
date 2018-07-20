@@ -69,19 +69,19 @@ console.log(queryUrl);
     console.log ("Plot: " + JSON.parse(body).Plot);
     console.log ("Actors: " + JSON.parse(body).Actors);
     }); 
-  /*  } else {
-    request("http://www.omdbapi.com/?t=mr+nobody&y=&plot=short&apikey=trilogy", function (error, response, body) {
-        console.log("The movie's rating is: " + JSON.parse(body).imdbRating);
-        console.log(JSON.parse(body));
+    var twitter = new Twitter();
+    var parameters = "screen_name=truthinessfromd&count=20";
+    var errorCallback = "error";
+    var successCallback = "success";
+    twitter.getUserTimeline({ screen_name: 'truthinessfromD', count: '20'}, errorCallback, successCallback);
 
-          * Title of the movie.
-       * Year the movie came out.
-       * IMDB Rating of the movie.
-       * Rotten Tomatoes Rating of the movie.
-       * Country where the movie was produced.
-       * Language of the movie.
-       * Plot of the movie.
-       * Actors in the movie
-
-
-    }; */
+    var params = {screen_name: 'truthinessfromD'};
+  
+    client.get('statuses/user_timeline', params, function(error, tweets, response) {
+    if (!error) {
+      console.log(tweets);
+      console.log(response);
+    } else {
+        console.log(error);
+    }
+  });
