@@ -2,20 +2,11 @@ require("dotenv").config();
 var fs = require("fs");
 var keys = require("./key.js");
 var request = require('request');
-//var Twitter = require('twitter');
-var oauth2lib = require('oauth20-provider');
-var oauth2 = new oauth2lib({log: {level: 2}});
-var Twitter = require('twitter-node-client').Twitter;
+var Twitter = require('twitter');
+var Spotify = require('node-spotify-api');
+var client = new Twitter(keys.twitter);
 
-//Callback functions
-var error = function (err, response, body) {
-    console.log('ERROR [%s]', err);
-};
-var success = function (data) {
-    console.log('Data [%s]', data);
-};
-   
- 
+
 
 if (process.argv[2] == "movie" && process.argv[3] !== undefined) {
 
@@ -48,14 +39,13 @@ if (process.argv[2] == "movie" && process.argv[3] !== undefined) {
         });
     });
 } else if (process.argv[2] == "my-tweets") {
-    var twitter = new Twitter();
-    var parameters = "screen_name=truthinessfromD&count=5";
-    var errorCallback = error;
-    var successCallback = success;
-    twitter.getTweetsOfMe({ q: 'truthinessfromD', count: '5'}, errorCallback, successCallback);
-    
-        
+    var params = { screen_name: 'truthinessfromD' };
+    client.get('statuses/user_timeline', params, function (error, tweets, response) {
+        if (!error) {
+            console.log(tweets);
+           // console.log(JSON.parse(response.text));
+        } else {
+            console.log(error);
+        }
+    });
 }
-    
-
-
