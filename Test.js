@@ -57,13 +57,13 @@ if (process.argv[2] == "movie" && process.argv[3] !== undefined) {
             return console.log('Error occurred: ' + err);
         } else {
             for (var i = 0; i < 19; i++) {
-                console.log(data.tracks.items[i].artists);
-               console.log(data.tracks.items[i].album.name);
-                //console.log(data.tracks.items[i].name);
-               // console.log(data.tracks.items[i].preview_url);
+               console.log(data.tracks.items[i].album.artists);
+               console.log("Album name: " + data.tracks.items[i].album.name);
+                console.log("Song name: " + data.tracks.items[i].name);
+                console.log("Preview url: " + data.tracks.items[i].preview_url);
             }
 
         }
 
     });
-}
+} else if (process.argv[2] == "spotify-this-song")
