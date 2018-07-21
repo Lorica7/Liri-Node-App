@@ -1,0 +1,27 @@
+{
+  "name": "liri-node-app",
+  "version": "1.0.0",
+  "description": "LIRI",
+  "main": "key.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lorica7/Liri-Node-App.git"
+  },
+  "author": "Danielle LaMorte",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lorica7/Liri-Node-App/issues"
+  },
+  "homepage": "https://github.com/Lorica7/Liri-Node-App#readme",
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "eslint": "^5.1.0",
+    "node-spotify-api": "^1.0.7",
+    "oauth20-provider": "^0.6.0",
+    "request": "^2.87.0",
+    "twitter": "^1.7.1"
+  }
+}
