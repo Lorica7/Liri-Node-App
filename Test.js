@@ -56,9 +56,9 @@ if (process.argv[2] == "movie" && process.argv[3] !== undefined) {
         if (err) {
             return console.log('Error occurred: ' + err);
         } else {
-            for (var i = 0; i < 19; i++) {
-               console.log(data.tracks.items[i].album.artists);
-               console.log("Album name: " + data.tracks.items[i].album.name);
+            for (var i = 0; i < data.tracks.items.length; i++) {
+                console.log("Artist name: " + data.tracks.items[i].album.artists[0].name);
+                console.log("Album name: " + data.tracks.items[i].album.name);
                 console.log("Song name: " + data.tracks.items[i].name);
                 console.log("Preview url: " + data.tracks.items[i].preview_url);
             }
@@ -66,4 +66,26 @@ if (process.argv[2] == "movie" && process.argv[3] !== undefined) {
         }
 
     });
-} else if (process.argv[2] == "spotify-this-song")
+} else if (process.argv[2] == "do-what-it-says") {
+    fs.readFile("random.txt", "utf8", function (err, data) {
+        if (err) {
+            return err;
+        } else {
+            var newArr = data.split(",");
+            var searchSpot = newArr[1];
+            var spotifySong = new Spotify(keys.spotify);
+            spotifySong.search({ type: 'track', query: searchSpot }, function (err, data) {
+                if (err) {
+                    return console.log('Error occurred: ' + err);
+                } else {
+                    for (var i = 0; i < data.tracks.items.length; i++) {
+                        console.log("Artist name: " + data.tracks.items[i].album.artists[0].name);
+                        console.log("Album name: " + data.tracks.items[i].album.name);
+                        console.log("Song name: " + data.tracks.items[i].name);
+                        console.log("Preview url: " + data.tracks.items[i].preview_url);
+                    }
+                }
+            });
+        }
+    });
+}
