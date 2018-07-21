@@ -42,10 +42,28 @@ if (process.argv[2] == "movie" && process.argv[3] !== undefined) {
     var params = { screen_name: 'truthinessfromD' };
     client.get('statuses/user_timeline', params, function (error, tweets, response) {
         if (!error) {
-            console.log(tweets);
-           // console.log(JSON.parse(response.text));
+            for (var i = 0; i < 6; i++) {
+                console.log(tweets[i].text);
+            }
         } else {
             console.log(error);
         }
+    });
+} else if (process.argv[2] == "spotify-this-song") {
+    var spotifySong = new Spotify(keys.spotify);
+    var search = process.argv.slice(3).join(" ");
+    spotifySong.search({ type: 'track', query: search }, function (err, data) {
+        if (err) {
+            return console.log('Error occurred: ' + err);
+        } else {
+            for (var i = 0; i < 19; i++) {
+                console.log(data.tracks.items[i].artists);
+               console.log(data.tracks.items[i].album.name);
+                //console.log(data.tracks.items[i].name);
+               // console.log(data.tracks.items[i].preview_url);
+            }
+
+        }
+
     });
 }
